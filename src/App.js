@@ -3,22 +3,20 @@ import { useState } from 'react';
 import './App.css'; 
 import Navbar from './components/Navbar';
 import TextForm from './components/TextForm';
-import About from './components/About';
-import Alerts from './components/Alerts';
-import{
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Link,
-  Routes
-} from "react-router-dom"
+// import About from './components/About';
+import Alerts from './components/Alerts' ;
+// import{
+//   BrowserRouter as Router,
+//   Switch,
+//   Route,
+//   Routes
+// } from "react-router-dom"
 
 
 
 function App() {
   const [Mode,setMode] = useState('light'); //wather dark mode is enable or not
   const [alert, setAlert] = useState(null)
-
   const showAlert = (message, type) =>{
     setAlert({
       msg: message,
@@ -33,30 +31,30 @@ function App() {
     setMode ('dark');
     document.body.style.backgroundColor = "rgb(24 47 58)";
     showAlert("Dark mode has been Enabled", "success")
-    document.title = 'TextUtils - Dark Mode'
+    // document.title = 'TextUtils - Dark Mode'
   } 
   else {
     setMode ('light');
     document.body.style.backgroundColor = "white"
     showAlert("Light mode has been Enabled", "success")
-    document.title = 'TextUtils - Light Mode'
+    // document.title = 'TextUtils - Light Mode'
   }
   }
 
   return (
     <>
-    <Router>
+    {/* <Router> */}
       <Navbar
         title="TextUtils2"
         aboutText="TextAbouts"
         mode={Mode}
         toggleMode={toggleMode}
       />
-      <alert alert={alert} />
+      <Alerts alert={alert} />
       <div className="container my-4" mode={Mode}>
-        <Routes>
-          <Route exact path="/about" element={<About />}></Route>
-          <Route
+        {/* <Routes> */}
+          {/* <Route exact path="/about" element={<About />}></Route> */}
+          {/* <Route
             exact path="/"
             element={
               <TextForm
@@ -65,10 +63,15 @@ function App() {
                 mode={Mode}
               />
             }
-          ></Route>
-        </Routes>
+          ></Route> */}
+        {/* </Routes> */}
       </div>
-    </Router>
+    {/* </Router> */}
+    <TextForm
+                showAlert={showAlert}
+                heading="Try - TextUtils :Word Counter, Character Counter, Remove Extra Spaces"
+                mode={Mode}
+              />
   </>
   );
 }
